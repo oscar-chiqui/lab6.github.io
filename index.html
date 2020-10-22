@@ -1,0 +1,76 @@
+<!-- Oscar Chiqui | 2560-60 Web Server | Drawing Program |  -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Drawing Program</title>
+
+    <style>
+
+        #canvas {
+            border: 1px black solid;
+        }
+
+    </style>
+
+</head>
+<body>
+
+
+<P>Drag the mouse on the canvas</P>
+<canvas id="canvas" height="400" width="400"></canvas>
+<br />
+
+<!--An input type="color" to select the drawing color.-->
+<label for="color_text">Choose a color</label>
+<input id="color_text" type="color" maxlength="20">
+<input id="size_range" type="range" max="30" min="1">
+<button id="clear_color">Clear</button>
+<script>
+
+    //find elements
+    let canvas = document.getElementById("canvas");
+    let context = canvas.getContext("2d");
+    let mousedown = false;
+    let color = document.querySelector('#color_text');
+    let range_slider = document.querySelector('#size_range')
+    let clear_button = document.querySelector('#clear_color');
+
+    //create mouse listeners for canvas
+    canvas.addEventListener("mousedown", function() {
+        mousedown = true
+    });
+
+    canvas.addEventListener("mouseup", function() {
+        mousedown = false
+    });
+
+    canvas.addEventListener("mousemove", function() {
+
+        if (!mousedown) { return; }
+        //save values to variables for assignment
+        let color_value = color.value;
+        let size = range_slider.value;
+        // event is a built-in letiable, contains the event that triggered this function
+        // get the x, y location of the event
+        let x = event.offsetX;
+        let y = event.offsetY;   //offsetX, offsetY, may not work in older browsers
+
+        //Draw a filled rectangle centered under the mouse click
+        //x, y is the top left corner, so shift up and left by 5 to center it under the mouse.
+        //values applied to arc and fillstyle based on user input
+        context.beginPath();
+        context.arc(x-5, y-5, size, 0, 2 * Math.PI);
+        context.fillStyle = color_value;
+        context.fill();
+        context.closePath();
+
+    });
+    //clear canvas on click
+    clear_button.addEventListener("click", function() {
+        context.clearRect(0, 0, canvas.width, canvas.height)
+    })
+</script>
+</body>
+</html>

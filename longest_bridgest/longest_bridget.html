@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Map of Longest Bridges</title>
+
+    <!-- Leaflet script and CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"></script>
+
+    <!-- The size of the map div is set before trying to draw the map.-->
+    <link rel="stylesheet" type="text/css" href="longest_bridge_styles.css">
+
+    <!-- Our script, uses Leaflet to draw the maps and map components for this page  -->
+    <script async defer src="longest_bridge.js"></script>
+</head>
+<body>
+    <h1>Longest US Bridges</h1>
+    <div id="bridge-map"></div>
+    <br>
+    <h2>(State location and Bridge)All of the five bridges with the longest spans in the USA</h2>
+    <a href="https://www.roadtraffic-technology.com/features/feature-the-ten-longest-suspension-bridges-in-the-us/">Visit Road Traffic.com!</a>
+    <canvas id="bridge-chart"></canvas>
+</body>
+</html>
